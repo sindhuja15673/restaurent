@@ -147,7 +147,7 @@ const handleCheckout = async () => {
   return (
     <div className='cart-page'>
 
-<HelmetComponent
+{/* <HelmetComponent
         title="Shopping Cart"
         description="Review and manage your cart items before proceeding to checkout."
         keywords="shopping cart, food, e-commerce, checkout, products"
@@ -158,8 +158,16 @@ const handleCheckout = async () => {
         ogImageAlt="Delicious food banner"
         ogImageWidth="300"
         ogImageHeight="200"
-      />
-     
+      /> */}
+     <Helmet>
+     <title>Food Delivery</title>
+
+<meta property="og:title" content="Food Delivery" />
+<meta property="og:description" content="We are providing the best foods" />
+<meta property="og:image" content="%PUBLIC_URL%/logo.png" />
+<meta property="og:url" content="https://restuarent.com" />
+
+     </Helmet>
      <div className='cart-items'>
        {isLoading ? (
           <div className='cart-skeleton'>
