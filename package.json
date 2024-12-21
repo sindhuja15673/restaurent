@@ -40,11 +40,13 @@
     "start": "react-scripts start",
     "start:backend": "cd my-backend && npm start",
     "start:dev": "npm-run-all --parallel start start:backend",
+    "start:prod": "npm-run-all --parallel serve start:backend",
     "serve": "serve -s build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+
   "eslintConfig": {
     "extends": [
       "react-app",
