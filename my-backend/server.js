@@ -23,11 +23,11 @@ app.use(express.json()); // Parse JSON bodies
 app.use('/api', productRoutes);
 app.use('/api', paymentRoutes);
 // Start the server
-app.use(express.static(path.join(__dirname, 'food restaurent/build')));
+app.use(express.static(path.join(__dirname, '../build')));
 
 // Route to serve index.html for all non-API requests
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'food restaurent/build', 'index.html'));
+  res.sendFile(path.join(__dirname, '../build', 'index.html'));
 });
 
 
