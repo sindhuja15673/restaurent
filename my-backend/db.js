@@ -1,43 +1,19 @@
-const express = require('express');
-const connectDB = require('./db');
-const cors = require('cors');
-const productRoutes = require('./routes/productRoutes');
-const paymentRoutes = require('./routes/paymentRoutes');
-require('dotenv').config();
-const path = require('path');
+const mongoose = require('mongoose');
 
-const app = express();
+const connectDB = async () => {
+  try {
+    const mongoURI = process.env.MONGO_URI || 'mongodb://localhost:27017/ecommerceDB'; // Default to local MongoDB
 
-// Connect to database
-connectDB();
+    await mongoose.connect(mongoURI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
 
-app.use(cors({
-  origin: process.env.FRONTEND_URL,
-  methods: ['GET', 'POST', 'OPTIONS'],
-  credentials: true, // Allow credentials (cookies, authorization headers)
-}));
+    console.log('MongoDB connected');
+  } catch (err) {
+    console.error('Error connecting to MongoDB:', err);
+    process.exit(1); // Exit the process if the connection fails
+  }
+};
 
-app.use(express.json()); // Parse JSON bodies
-
-// Use routes
-app.use('/api', productRoutes);
-app.use('/api', paymentRoutes);
-// Start the server
-app.use(express.static(path.join(__dirname, '../build')));
-
-// Route to serve index.html for all non-API requests
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../build', 'index.html'));
-});
-
-
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
-
-
-
-
-
-
+module.exports = connectDB;
