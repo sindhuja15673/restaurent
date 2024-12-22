@@ -32,6 +32,25 @@ export default function Menu() {
     };
 
 
+    useEffect(() => {
+      const metaTags = {
+        title: 'Our Menu - Best Food Delivered to Your Door',
+        description: 'Explore our delicious food menu, including vegetarian, non-vegetarian, and snacks. Order your favorite meals now!',
+        ogTitle: 'Our Food Menu',
+        ogDescription: 'Browse our wide selection of food items and order online. Fresh, tasty, and delivered to your door!',
+        ogImage: '(link unavailable)',
+        ogUrl: '(link unavailable)',
+      };
+  
+      document.title = metaTags.title;
+      document.querySelector('meta[name="description"]').setAttribute('content', metaTags.description);
+      document.querySelector('meta[property="og:title"]').setAttribute('content', metaTags.ogTitle);
+      document.querySelector('meta[property="og:description"]').setAttribute('content', metaTags.ogDescription);
+      document.querySelector('meta[property="og:image"]').setAttribute('content', metaTags.ogImage);
+      document.querySelector('meta[property="og:url"]').setAttribute('content', metaTags.ogUrl);
+    }, [foodItems]);
+
+    
     const timer = setTimeout(() => {
       fetchProducts();
     }, 1000);
@@ -69,7 +88,16 @@ export default function Menu() {
   };
   return (
     <div>
-       <HelmetComponent
+
+<Helmet>
+        <title>Our Menu - Best Food Delivered to Your Door</title>
+        <meta name="description" content="Explore our delicious food menu, including vegetarian, non-vegetarian, and snacks. Order your favorite meals now!" />
+        <meta property="og:title" content="Our Food Menu" />
+        <meta property="og:description" content="Browse our wide selection of food items and order online. Fresh, tasty, and delivered to your door!" />
+        <meta property="og:image" content="(link unavailable)" />
+        <meta property="og:url" content="(link unavailable)" />
+      </Helmet>
+       {/* <HelmetComponent
         title="Our Menu - Best Food Delivered to Your Door"
         description="Explore our delicious food menu, including vegetarian, non-vegetarian, and snacks. Order your favorite meals now!"
         keywords="menu, food, restaurant, order food online, delicious food, vegetarian food, non-vegetarian food, snacks" 
@@ -81,7 +109,7 @@ export default function Menu() {
         ogImageWidth="300"
         ogImageHeight="200"
       />
-      
+       */}
       {showPopup && (
         <Popup
           food={selectedFood}
