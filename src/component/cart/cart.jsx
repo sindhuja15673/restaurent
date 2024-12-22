@@ -63,46 +63,6 @@ const Cart = () => {
   const discount = total * 0.10;
   const finalTotal = total + gst - discount;
 
-// const handleCheckout = async () => {
-//   const cartData = cart.map(item => ({
-//     name: item.name,
-//     price: item.price,
-//     img: item.img,
-//     quantity: item.quantity,
-//   }));
-
-//   console.log('Cart Data:', cartData);  // Debug cart data
-
-//   try {
-
-//     console.log('API Base URL:', process.env.REACT_APP_API_BASE_URL);
-//     console.log('Stripe Public Key:', process.env.REACT_APP_STRIPE_PUBLIC_KEY);
-
-
-//     const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/create-checkout-session`, {
-//       method: 'POST',
-//       headers: { 'Content-Type': 'application/json' },
-//       body: JSON.stringify({ cart: cartData }),
-//     });
-
-//     const session = await response.json();
-//     console.log('Session:', session);  // Debug session data
-
-//     const stripe = await loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
-//     const { error } = await stripe.redirectToCheckout({
-//       sessionId: session.id,
-//     });
-
-//     if (error) {
-//       console.error('Stripe Checkout Error:', error);
-//     }
-//   } catch (error) {
-//     console.error('Error during checkout:', error);
-//   }
-//   finally {
-//       setIsCheckoutLoading(false); // Stop loading after the request finishes
-//     }
-// };
 const handleCheckout = async () => {
   setIsCheckoutLoading(true); // Start loading when checkout begins
 
@@ -147,7 +107,7 @@ const handleCheckout = async () => {
   return (
     <div className='cart-page'>
 
-<HelmetComponent
+{/* <HelmetComponent
         title="Shopping Cart"
         description="Review and manage your cart items before proceeding to checkout."
         keywords="shopping cart, food, e-commerce, checkout, products"
@@ -158,16 +118,7 @@ const handleCheckout = async () => {
         ogImageAlt="Delicious food banner"
         ogImageWidth="300"
         ogImageHeight="200"
-      />
-     <Helmet>
-     <title>Food Delivery</title>
-
-<meta property="og:title" content="Food Delivery" />
-<meta property="og:description" content="We are providing the best foods" />
-<meta property="og:image" content="%PUBLIC_URL%/logo.png" />
-<meta property="og:url" content="https://restuarent.com" />
-
-     </Helmet>
+      /> */}
      <div className='cart-items'>
        {isLoading ? (
           <div className='cart-skeleton'>
